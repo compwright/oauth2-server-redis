@@ -1,4 +1,5 @@
 const InvalidTokenError = require('@compwright/oauth2-server/lib/errors/invalid-token-error');
+const AccessDeniedError = require('@compwright/oauth2-server/lib/errors/access-denied-error');
 
 module.exports = ({ redis }) => ({
     
@@ -64,5 +65,44 @@ module.exports = ({ redis }) => ({
         return redis.del(token.refreshToken, (err, result) => {
             done(err, result > 0);
         });
-    }
+    },
+
+    saveAuthorizationCode: (code, client, user, done) => {
+        const transaction = redis.multi();
+
+        transaction.hmset(code.authorizationCode, {
+            authorizationCode: code.authorizationCode,
+            expiresAt: code.expiresAt.valueOf(),
+            redirectUri: code.redirectUri,
+            scope: code.scope,
+            client: JSON.stringify(client),
+            user: JSON.stringify(user)
+        });
+        transaction.pexpireat(code.authorizationCode, code.expiresAt.valueOf());
+
+        transaction.exec(err => {
+            done(err, { ...code, client, user });
+        });
+    },
+
+    getAuthorizationCode: (authorizationCode, done) => {
+        redis.hgetall(authorizationCode, (err, code) => {
+            try {
+                if (err) throw err;
+                if (!code) throw new AccessDeniedError('Invalid authorization code');
+                code.expiresAt = new Date(parseInt(code.expiresAt));
+                code.client = JSON.parse(code.client);
+                code.user = JSON.parse(code.user);
+                done(null, code);
+            } catch (e) {
+                done(e);
+            }
+        });
+    },
+
+    revokeAuthorizationCode: (authorizationCode, done) => {
+        return redis.del(authorizationCode.code, (err, result) => {
+            done(err, result > 0);
+        });
+    } 
 });
