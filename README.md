@@ -1,6 +1,6 @@
 # oauth2-server-redis
 
-[![Build Status](https://travis-ci.org/compwright/oauth2-server-redis.svg?branch=master)](https://travis-ci.org/compwright/oauth2-server-redis)
+[![Build Status](https://travis-ci.org/compwright/oauth2-server-redis.svg?branch=master)](https://travis-ci.org/compwright/oauth2-server-redis) [![Greenkeeper badge](https://badges.greenkeeper.io/compwright/oauth2-server-redis.svg)](https://greenkeeper.io/)
 
 Redis storage backend for [oauth2-server](https://github.com/compwright/node-oauth2-server)
 
