@@ -4,7 +4,8 @@
   "description": "Model mixin for oauth2-server to store access tokens and refresh tokens in Redis",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js"
+    "pretest": "eslint index.js test",
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
     "redis": "^2.8.0"
   },
   "devDependencies": {
-    "eslint": "^5.3.0"
+    "eslint": "^5.3.0",
+    "mocha": "^5.2.0",
+    "redis": "^2.8.0"
   }
 }

@@ -36,7 +36,7 @@ module.exports = ({ redis }) => ({
             try {
                 if (err) throw err;
                 if (!token) throw new InvalidTokenError();
-                token.accessTokenExpiresAt = new Date(token.accessTokenExpiresAt);
+                token.accessTokenExpiresAt = new Date(parseInt(token.accessTokenExpiresAt));
                 token.client = JSON.parse(token.client);
                 token.user = JSON.parse(token.user);
                 done(null, token);
@@ -51,7 +51,7 @@ module.exports = ({ redis }) => ({
             try {
                 if (err) throw err;
                 if (!token) throw new InvalidTokenError();
-                token.refreshTokenExpiresAt = new Date(token.refreshTokenExpiresAt);
+                token.refreshTokenExpiresAt = new Date(parseInt(token.refreshTokenExpiresAt));
                 token.client = JSON.parse(token.client);
                 token.user = JSON.parse(token.user);
                 done(null, token);
