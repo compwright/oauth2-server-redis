@@ -2,18 +2,27 @@
 
 [![Build Status](https://travis-ci.org/compwright/oauth2-server-redis.svg?branch=master)](https://travis-ci.org/compwright/oauth2-server-redis)
 
-Model mixin for [oauth2-server](https://github.com/compwright/node-oauth2-server) to store access tokens and refresh tokens in Redis
+Redis storage backend for [oauth2-server](https://github.com/compwright/node-oauth2-server)
+
+## Features
+
+* Stores the following in Redis:
+    * Access tokens
+    * Refresh tokens
+    * Authorization codes
+* Uses `HMSET` to store all data as keys (the token or code is the hash)
+* Respects TTL settings so that entries expire at the right time
 
 ## Requirements
 
 * Node.js 8+
 * [oauth2-server](https://github.com/compwright/node-oauth2-server)
-* Redis
+* [redis](https://www.npmjs.com/package/redis)
 
 ## Installation
 
 ```bash
-$ npm install --save @compwright/oauth2-server oauth2-server-redis
+$ npm install --save @compwright/oauth2-server oauth2-server-redis redis
 ```
 
 ## Usage
