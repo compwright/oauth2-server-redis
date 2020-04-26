@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "eslint": "^6.3.0",
-    "mocha": "^7.1.0",
+    "mocha": "^7.1.2",
     "redis": "^3.0.2"
   }
 }
