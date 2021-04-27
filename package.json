@@ -35,8 +35,8 @@
     "redis": "^2.8.0"
   },
   "devDependencies": {
-    "eslint": "^7.15.0",
-    "mocha": "^8.2.1",
-    "redis": "^3.0.2"
+    "eslint": "^7.25.0",
+    "mocha": "^8.3.2",
+    "redis": "^3.1.2"
   }
 }
