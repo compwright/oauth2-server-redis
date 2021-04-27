@@ -1,6 +1,6 @@
 {
   "name": "oauth2-server-redis",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Redis storage backend for oauth2-server",
   "keywords": [
     "redis",
